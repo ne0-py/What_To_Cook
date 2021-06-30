@@ -1,0 +1,47 @@
+##:kivy
+
+ScreenManager:
+    Main:
+
+<main>:
+    name: 'main'
+    card_list: card_list
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDToolbar:
+            title: 'What To Cook'
+            font_size: 28
+        
+        MDTextField:
+            mode: 'rectangle'
+            hint_text: 'Search for Recipes'
+            size_hint: 0.95, None
+            height: '18dp'
+            pos_hint: {'center_x': 0.5}
+            font_size: 16
+            on_text_validate: root.on_text_validate(card_list, self)
+        
+        MDBottomNavigation:
+
+            MDBottomNavigationItem:
+                name: 'search screen'
+                text: 'SEARCH'
+                icon: 'search-web'
+
+                ScrollView:
+                    do_scroll_x: False
+                    BoxLayout:
+                        id: card_list
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+            
+            MDBottomNavigationItem:
+                name: 'about app'
+                text: 'ABOUT'
+                icon: 'information-outline'
+
+                MDLabel:
+                    text: 'This app uses the following websites as a database:\n\nbakerbettie.com\n\nvegrecipesofindia.com'
+                    halign: 'center'
